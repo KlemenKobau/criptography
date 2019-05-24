@@ -24,21 +24,13 @@ def find_coll():
     # mining_5603404
     # mining_4772222
 
+# used for hashing text and turning it into a number
 def hash_coll(text):
     hashed_text = hashlib.sha1(text.encode('utf8')).hexdigest()
     num = int(hashed_text,16)
     
     #print(num) # 653222382295586618370463671847145239723017395549
     return num
-
-def find_hash_with70(text):
-    i = 0
-    while(True):
-        hashed = hashlib.sha1((text + str(i)).encode('utf8')).hexdigest()
-        if hashed[:7] == "0000000":
-            print(i)
-            return i
-        i += 1
 
 def get_q():
     q = pow(2,160)
@@ -84,6 +76,7 @@ def get_delta(k_inv,text_hash,a,gamma,q):
     print(delta)
     return delta
 
+# function to find a pair of number and hash with 7 leading 0
 def get_line4_hash_pair(line1,line2,line3):
     text_from_before =  line1 + "\n" + line2 + "\n" + line3
     numero = 0
@@ -96,7 +89,7 @@ def get_line4_hash_pair(line1,line2,line3):
 
 
 if __name__ == "__main__":
-    text = "mining_5603404 mining_4772222"
+    text = "mining_5603404 mining_4772222" # got this with function find_coll()
 
     # generating signature
     q = 1461501637330902918203684832716283019655932542983 # get_q()
